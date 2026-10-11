@@ -179,3 +179,103 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+/* ============================================================
+   Stage 3: 3D-feel navigation bar
+   ============================================================ */
+.nav-stage {
+  perspective: 900px;
+}
+
+.nav-depth {
+  position: relative;
+  transform: rotateX(4deg);
+  transform-origin: top center;
+  transition: transform 0.4s ease;
+}
+.nav-stage:hover .nav-depth,
+.nav-stage:focus-within .nav-depth {
+  transform: rotateX(0deg);
+}
+
+/* Layered glass plates behind the bar */
+.nav-plate {
+  position: absolute;
+  z-index: -1;
+  border-radius: 1rem;
+  pointer-events: none;
+}
+.nav-plate-1 {
+  left: 4%;
+  right: 4%;
+  top: 14px;
+  bottom: -8px;
+  background: rgba(255, 46, 147, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 40px rgba(255, 46, 147, 0.35);
+}
+.nav-plate-2 {
+  left: 8%;
+  right: 8%;
+  top: 22px;
+  bottom: -15px;
+  background: rgba(34, 229, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 36px rgba(34, 229, 255, 0.25);
+}
+
+/* Bright edge highlight along the top of the bar */
+.nav-panel {
+  position: relative;
+}
+.nav-panel::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  pointer-events: none;
+}
+
+/* Links lift up on hover; the current page gets a neon underline */
+.nav-link {
+  position: relative;
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+.nav-link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-neon);
+  box-shadow: 0 0 10px var(--color-neon);
+}
+
+/* On phones: flat bar, no plates (simpler and easier to tap) */
+@media (max-width: 767px) {
+  .nav-depth {
+    transform: none;
+  }
+  .nav-plate {
+    display: none;
+  }
+}
+
+/* Reduced motion: no tilt, no lifting */
+@media (prefers-reduced-motion: reduce) {
+  .nav-depth {
+    transform: none !important;
+  }
+  .nav-link:hover {
+    transform: none;
+  }
+}

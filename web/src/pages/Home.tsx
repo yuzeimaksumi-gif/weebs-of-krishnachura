@@ -2,18 +2,16 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ACTIVITIES, EVENT, MAGAZINE_PREVIEW, SITE } from '../config/site'
 import Countdown from '../components/Countdown'
-import PetalField from '../components/PetalField'
+import HeroBackground from '../components/HeroBackground'
 
 export default function Home() {
   return (
     <>
       {/* ---------- HERO ---------- */}
       <section className="relative isolate -mt-20 flex min-h-[92vh] items-center overflow-hidden pt-20">
-        <div className="hero-sun" aria-hidden="true" />
-        <div className="grid-floor" aria-hidden="true" />
-        <PetalField />
+               <HeroBackground />
         <div
-          className="absolute inset-0 bg-gradient-to-b from-void/30 via-transparent to-void"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-void/40 via-void/10 to-void"
           aria-hidden="true"
         />
 
