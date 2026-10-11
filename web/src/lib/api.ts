@@ -1,10 +1,17 @@
-// Where the API lives. In production this is set at build time (Stage 12).
+// In development we use the local API. Online, VITE_API_URL must be set.
 const API_URL =
-  (import.meta.env.VITE_API_URL as string | undefined) ?? 'http://localhost:8787'
+  (import.meta.env.VITE_API_URL as string | undefined) ??
+  (import.meta.env.DEV ? 'http://localhost:8787' : '')
 
 export type ApiResult<T> =
   | { ok: true; data: T }
-  | { ok: false; status: number; error: string; fields?: Record<string, string> }
+  | {
+      ok: false
+      status: number
+      error: string
+      message?: string
+      fields?: Record<string, string>
+    }
 
 async function request<T>(path: string, init?: RequestInit): Promise<ApiResult<T>> {
   try {
@@ -15,6 +22,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<ApiResult<T
         ok: false,
         status: res.status,
         error: typeof json.error === 'string' ? json.error : 'request_failed',
+        message: typeof json.message === 'string' ? json.message : undefined,
         fields: json.fields,
       }
     }

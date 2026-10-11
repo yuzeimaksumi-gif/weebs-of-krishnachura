@@ -1,0 +1,7 @@
+name = "wok-api"
+main = "src/worker.ts"
+compatibility_date = "2025-09-01"
+
+[vars]
+# The website addresses allowed to call this API (comma separated, no trailing slash)
+WEB_ORIGIN = "https://weebs-of-krishnachura.web.app,https://weebs-of-krishnachura.firebaseapp.com"

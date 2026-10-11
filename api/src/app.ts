@@ -7,6 +7,8 @@ import type { AppEnv, Bindings } from './types'
 import health from './routes/health'
 import events from './routes/events'
 import members from './routes/members'
+import tickets from './routes/tickets'
+import orders from './routes/orders'
 
 const app = new Hono<AppEnv>()
 
@@ -40,6 +42,8 @@ app.use(
 app.route('/api/health', health)
 app.route('/api/events', events)
 app.route('/api/members', members)
+app.route('/api/tickets', tickets)
+app.route('/api/orders', orders)
 
 app.notFound((c) => c.json({ error: 'not_found' }, 404))
 

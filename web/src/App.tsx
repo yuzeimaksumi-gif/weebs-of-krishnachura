@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
 import Events from './pages/Events'
+import Tickets from './pages/Tickets'
 import Community from './pages/Community'
 import Contact from './pages/Contact'
 import Placeholder from './pages/Placeholder'
@@ -19,7 +20,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/tickets" element={<Placeholder eyebrow="Passes" title="Passes & Tickets" stage="Stages 6 to 8" />} />
+          <Route path="/tickets" element={<Tickets />} />
           <Route path="/magazine" element={<Placeholder eyebrow="E-Magazine" title="The Magazine" stage="Stage 10" />} />
           <Route path="/community" element={<Community />} />
           <Route path="/contact" element={<Contact />} />
