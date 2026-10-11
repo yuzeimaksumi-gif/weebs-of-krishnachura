@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Secrets (never commit these)
+.env
+.env.*
+!.env.example
+.dev.vars
+
+# Build output
+dist/
+.wrangler/
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
